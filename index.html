@@ -510,55 +510,44 @@
         </div>
     </footer> <!-- *** end Footer *** -->
 
-    <!-- <section id="cookie-information" class="d-none">
-        <div class="container">
-          <div class="row">
-            <div class="col-12 col-lg-10">
-              <p>
-                Este site armazena informações sobre a sua navegação na Internet para melhorar sua experiência. Caso queira entender mais a respeito, leia a nossa <br><a href="https://www.empresavila.com.br/politica-privacidade/" target="_blank">Política de Privacidade</a>.
-              </p>
-            </div>
-            <div class="col-12 col-lg-2 d-flex align-items-center justify-content-center">
-              <a href="javascript:;" id="btn-cookie" class="btn btn-primary btn-cookie btn-outline">Aceitar</a>
-            </div>
-          </div>
-        </div>
-    </section> -->
 
-<section id="cookie-banner" class="cookie-banner">
-    <div class="cookie-banner-content">
-        <div class="row ">
-            <div class="col-xs-12 col-lg-8">
-                <h4>
-                    <i class="fas fa-cookie-bite"></i>
-                    <strong>Esse site usa cookies</strong>
-                </h4>
-                <p>
-                    Nós utilizamos cookies para melhorar sua experiência em nosso site. Para mais informações, visite nossa <a href="https://www.empresavila.com.br/politica-privacidade/" target="_blank">Política de Privacidade</a>.
-                </p>
-            </div>
-            <div class="col-xs-12 col-lg-4 cookie-banner-btns">
-                <button id="accept-cookies" class="accept-cookies-btn btn btn-lg">Aceitar</button>
-                <button id="reject-cookies" class="reject-cookies-btn btn btn-lg">Rejeitar</button>
+    <section id="cookie-banner" class="cookie-banner">
+        <div class="cookie-banner-content">
+            <div class="row ">
+                <div class="col-xs-12 col-lg-8">
+                    <h4>
+                        <i class="fa fa-cookie-bite"></i>
+                        <strong>Esse site usa cookies</strong>
+                    </h4>
+                    <p>
+                        Nós utilizamos cookies para melhorar sua experiência em nosso site. Para mais informações, visite nossa <a href="https://www.empresavila.com.br/politica-privacidade/" target="_blank">Política de Privacidade</a>.
+                    </p>
+                </div>
+                <div class="col-xs-12 col-lg-4 cookie-banner-btns">
+                    <button id="accept-cookies" class="accept-cookies-btn btn btn-lg">Aceitar</button>
+                    <button id="reject-cookies" class="reject-cookies-btn btn btn-lg">Rejeitar</button>
+                </div>
             </div>
         </div>
-    </div>
-</section>
-
+    </section>
       
     <script>
         $(function () {
-
             // cookies
-            $('#btn-cookie').on('click', function(){
+            $('#accept-cookies').on('click', function(){
                 var d = new Date();
                 d.setTime(d.getTime() + (360 * 24 * 60 * 60 * 1000));
                 var expires = 'expires='+d.toUTCString();
                 document.cookie = 'accept_cookie=true;' + expires + ';path=/';
-                $('#cookie-information').remove();
+                $('#cookie-banner').remove();
                 $('body').addClass('no-cookie');
             });
-            
+
+            $('#reject-cookies').on('click', function(){
+                $('#cookie-banner').remove();
+                $('body').addClass('no-cookie');
+            });
+
             $('body').addClass('no-cookie');
             
             let verifyCookie = getCookie('accept_cookie');
@@ -566,7 +555,7 @@
             if(verifyCookie != 'true')
             {
                 $('body').removeClass('no-cookie');
-                $('#cookie-information').removeClass('d-none');
+                $('#cookie-banner').show();
             }
             
             function getCookie(cname) {
